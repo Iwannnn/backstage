@@ -23,6 +23,8 @@ const user = {
     },
     actions: {
         Login({ commit }, loginInfo) {
+            console.log("store user");
+            console.log(loginInfo);
             const username = loginInfo.username.trim();
             const password = loginInfo.password;
             const uuid = loginInfo.uuid;

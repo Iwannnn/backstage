@@ -5,7 +5,7 @@
  * @FilePath: \backstage\front-end\src\views\login.vue
 -->
 <template>
-    <div class="login">
+    <div class="login" style="">
         <el-form
             ref="loginForm"
             :model="loginForm"
@@ -50,9 +50,6 @@
                 </el-button>
             </el-form-item>
         </el-form>
-        <div class="el-login-footer">
-            <span>iwan backstage login page</span>
-        </div>
     </div>
 </template>
 
@@ -111,6 +108,7 @@ export default {
                 rememberMe:
                     rememberMe === undefined ? false : Boolean(rememberMe),
             };
+            console.log("from cookie");
             console.log(this.loginForm);
         },
         handleLogin() {
@@ -134,15 +132,16 @@ export default {
                         Cookies.remove("password");
                         Cookies.remove("rememberMe");
                     }
+                    console.log("button");
                     console.log(this.loginForm);
                     this.$store
                         .dispatch("Login", this.loginForm)
                         .then(() => {
+                            //TODO 页面跳转
                             console.log("success");
                         })
                         .catch(() => {
                             this.loading = false;
-                            this.getCode();
                         });
                 }
             });
@@ -151,14 +150,16 @@ export default {
 };
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
+<style lang="scss" scope>
 .login {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
+    position: fixed;
+    background-size: 100% 100%;
     background-image: url("../assets/images/login-background.jpg");
-    background-size: cover;
 }
 .title {
     margin: 0px auto 30px auto;

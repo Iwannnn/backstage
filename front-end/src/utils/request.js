@@ -43,6 +43,8 @@ service.interceptors.request.use(
             config.params = {};
             config.url = url;
         }
+        console.log("request");
+        console.log(config);
         return config;
     },
     error => {
@@ -55,6 +57,8 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     res => {
         // 未设置状态码则默认成功状态
+        console.log("res");
+        console.log(res);
         const code = res.data.code || 200;
         // 获取错误信息
         const msg = errorCode[code] || res.data.msg || errorCode["default"];
