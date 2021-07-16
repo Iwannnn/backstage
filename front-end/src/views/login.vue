@@ -12,19 +12,14 @@
             :rules="loginRules"
             class="login-form"
         >
-            <h3 class="title">iwan-backstage</h3>
+            <h3 class="title">iwan backstage login</h3>
             <el-form-item prop="username">
                 <el-input
                     v-model="loginForm.username"
                     type="text"
                     auto-complete="off"
-                    placeholder="账号"
+                    placeholder="username"
                 >
-                    <svg-icon
-                        slot="prefix"
-                        icon-class="user"
-                        class="el-input__icon input-icon"
-                    />
                 </el-input>
             </el-form-item>
             <el-form-item prop="password">
@@ -32,14 +27,9 @@
                     v-model="loginForm.password"
                     type="password"
                     auto-complete="off"
-                    placeholder="密码"
+                    placeholder="password"
                     @keyup.enter.native="handleLogin"
                 >
-                    <svg-icon
-                        slot="prefix"
-                        icon-class="password"
-                        class="el-input__icon input-icon"
-                    />
                 </el-input>
             </el-form-item>
             <el-checkbox
@@ -60,9 +50,16 @@
                 </el-button>
             </el-form-item>
         </el-form>
+        <div class="el-login-footer">
+            <span>iwan backstage login page</span>
+        </div>
     </div>
 </template>
+
 <script>
+import Cookies from "js-cookie";
+import { encrypt, decrypt } from "@/utils/jsencrypt";
+
 export default {
     name: "Login",
     data() {
@@ -71,7 +68,7 @@ export default {
             cookiePassword: "",
             loginForm: {
                 username: "admin",
-                password: "admin123",
+                password: "123456",
                 rememberMe: false,
                 code: "",
                 uuid: "",
@@ -95,6 +92,61 @@ export default {
             loading: false,
             redirect: undefined,
         };
+    },
+    created() {
+        this.getCookie();
+    },
+    methods: {
+        getCookie() {
+            const username = Cookies.get("username");
+            const password = Cookies.get("password");
+            const rememberMe = Cookies.get("rememberMe");
+            this.loginForm = {
+                username:
+                    username === undefined ? this.loginForm.username : username,
+                password:
+                    password === undefined
+                        ? this.loginForm.password
+                        : decrypt(password),
+                rememberMe:
+                    rememberMe === undefined ? false : Boolean(rememberMe),
+            };
+            console.log(this.loginForm);
+        },
+        handleLogin() {
+            this.$refs.loginForm.validate((valid) => {
+                if (valid) {
+                    this.loading = true;
+                    if (this.loginForm.rememberMe) {
+                        Cookies.set("username", this.loginForm.username, {
+                            expires: 30,
+                        });
+                        Cookies.set(
+                            "password",
+                            encrypt(this.loginForm.password),
+                            { expires: 30 }
+                        );
+                        Cookies.set("rememberMe", this.loginForm.rememberMe, {
+                            expires: 30,
+                        });
+                    } else {
+                        Cookies.remove("username");
+                        Cookies.remove("password");
+                        Cookies.remove("rememberMe");
+                    }
+                    console.log(this.loginForm);
+                    this.$store
+                        .dispatch("Login", this.loginForm)
+                        .then(() => {
+                            console.log("success");
+                        })
+                        .catch(() => {
+                            this.loading = false;
+                            this.getCode();
+                        });
+                }
+            });
+        },
     },
 };
 </script>
