@@ -13,12 +13,12 @@
             class="login-form"
         >
             <h3 class="title">iwan backstage login</h3>
-            <el-form-item prop="username">
+            <el-form-item prop="account">
                 <el-input
-                    v-model="loginForm.username"
+                    v-model="loginForm.account"
                     type="text"
                     auto-complete="off"
-                    placeholder="username"
+                    placeholder="account"
                 >
                 </el-input>
             </el-form-item>
@@ -64,14 +64,13 @@ export default {
             codeUrl: "",
             cookiePassword: "",
             loginForm: {
-                username: "admin",
+                account: "admin",
                 password: "123456",
                 rememberMe: false,
-                code: "",
                 uuid: "",
             },
             loginRules: {
-                username: [
+                account: [
                     {
                         required: true,
                         trigger: "blur",
@@ -95,12 +94,12 @@ export default {
     },
     methods: {
         getCookie() {
-            const username = Cookies.get("username");
+            const account = Cookies.get("account");
             const password = Cookies.get("password");
             const rememberMe = Cookies.get("rememberMe");
             this.loginForm = {
-                username:
-                    username === undefined ? this.loginForm.username : username,
+                account:
+                    account === undefined ? this.loginForm.account : account,
                 password:
                     password === undefined
                         ? this.loginForm.password
@@ -116,7 +115,7 @@ export default {
                 if (valid) {
                     this.loading = true;
                     if (this.loginForm.rememberMe) {
-                        Cookies.set("username", this.loginForm.username, {
+                        Cookies.set("account", this.loginForm.account, {
                             expires: 30,
                         });
                         Cookies.set(
@@ -128,11 +127,11 @@ export default {
                             expires: 30,
                         });
                     } else {
-                        Cookies.remove("username");
+                        Cookies.remove("account");
                         Cookies.remove("password");
                         Cookies.remove("rememberMe");
                     }
-                    console.log("button");
+                    console.log("login");
                     console.log(this.loginForm);
                     this.$store
                         .dispatch("Login", this.loginForm)
