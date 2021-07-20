@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.iwannnn.backstage.dto.LoginDto;
 import cn.iwannnn.backstage.models.AxiosResult;
 import cn.iwannnn.backstage.service.impl.UserServiceImpl;
-import cn.iwannnn.backstage.utils.uuidUtil;
+import cn.iwannnn.backstage.utils.UUIDUtil;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -27,9 +27,9 @@ public class UserController {
 		return userServiceImpl.login(data);
 	}
 
-	@RequestMapping("/uuid")
+	@RequestMapping("/getUUID")
 	public AxiosResult getUUID() {
-		String uuid = uuidUtil.getUUID();
-		return AxiosResult.success(uuid);
+		String uuid = UUIDUtil.getUUID();
+		return AxiosResult.success("uuid", uuid);
 	}
 }
