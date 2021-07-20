@@ -1,4 +1,4 @@
-package cn.iwannnn.backstage.utils;
+package cn.iwannnn.backstage.constant;
 
 public class HttpStatues {
 	public static final int CONTINUE = 100;
