@@ -27,9 +27,11 @@ const user = {
 			console.log(loginInfo);
 			const username = loginInfo.account.trim();
 			const password = loginInfo.password;
+			const uuid = loginInfo.uuid;
 			return new Promise((resolve, reject) => {
-				login(username, password)
+				login(username, password, uuid)
 					.then(res => {
+						console.log(res);
 						setToken(res.token);
 						commit("SET_TOKEN", res.token);
 						resolve();

@@ -56,6 +56,7 @@
 <script>
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
+import { getUUID } from "@/api/login";
 
 export default {
     name: "Login",
@@ -64,8 +65,8 @@ export default {
             codeUrl: "",
             cookiePassword: "",
             loginForm: {
-                account: "admin",
-                password: "123456",
+                account: "",
+                password: "",
                 rememberMe: false,
                 uuid: "",
             },
@@ -90,9 +91,15 @@ export default {
         };
     },
     created() {
+        this.getUUID();
         this.getCookie();
     },
     methods: {
+        getUUID() {
+            getUUID().then((res) => {
+                this.loginForm.uuid = res.data;
+            });
+        },
         getCookie() {
             const account = Cookies.get("account");
             const password = Cookies.get("password");
