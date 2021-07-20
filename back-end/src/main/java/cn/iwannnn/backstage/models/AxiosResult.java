@@ -1,6 +1,8 @@
-package cn.iwannnn.backstage.utils;
+package cn.iwannnn.backstage.models;
 
 import java.util.HashMap;
+
+import cn.iwannnn.backstage.constant.HttpStatues;
 
 public class AxiosResult extends HashMap<String, Object> {
 
