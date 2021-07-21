@@ -1,20 +1,11 @@
 import request from "@/utils/request";
 
 
-//获取uuid
-export function getUUID() {
-	return request({
-		url: "/getUUID",
-		method: "get"
-	})
-}
-
 // 登录方法
-export function login(account, password, uuid) {
+export function login(username, password) {
 	const data = {
-		account,
+		username,
 		password,
-		uuid
 	};
 	console.log(data);
 	return request({

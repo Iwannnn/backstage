@@ -12,13 +12,13 @@
             :rules="loginRules"
             class="login-form"
         >
-            <h3 class="title">iwan backstage login</h3>
-            <el-form-item prop="account">
+            <h3 class="title">登录界面</h3>
+            <el-form-item prop="username">
                 <el-input
-                    v-model="loginForm.account"
+                    v-model="loginForm.username"
                     type="text"
                     auto-complete="off"
-                    placeholder="account"
+                    placeholder="username"
                 >
                 </el-input>
             </el-form-item>
@@ -56,7 +56,6 @@
 <script>
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
-import { getUUID } from "@/api/login";
 
 export default {
     name: "Login",
@@ -65,13 +64,12 @@ export default {
             codeUrl: "",
             cookiePassword: "",
             loginForm: {
-                account: "",
+                username: "",
                 password: "",
                 rememberMe: false,
-                uuid: "",
             },
             loginRules: {
-                account: [
+                username: [
                     {
                         required: true,
                         trigger: "blur",
@@ -91,22 +89,16 @@ export default {
         };
     },
     created() {
-        this.getUUID();
         this.getCookie();
     },
     methods: {
-        getUUID() {
-            getUUID().then((res) => {
-                this.loginForm.uuid = res.data;
-            });
-        },
         getCookie() {
-            const account = Cookies.get("account");
+            const username = Cookies.get("username");
             const password = Cookies.get("password");
             const rememberMe = Cookies.get("rememberMe");
             this.loginForm = {
-                account:
-                    account === undefined ? this.loginForm.account : account,
+                username:
+                    username === undefined ? this.loginForm.username : username,
                 password:
                     password === undefined
                         ? this.loginForm.password
@@ -122,7 +114,7 @@ export default {
                 if (valid) {
                     this.loading = true;
                     if (this.loginForm.rememberMe) {
-                        Cookies.set("account", this.loginForm.account, {
+                        Cookies.set("username", this.loginForm.username, {
                             expires: 30,
                         });
                         Cookies.set(
@@ -134,7 +126,7 @@ export default {
                             expires: 30,
                         });
                     } else {
-                        Cookies.remove("account");
+                        Cookies.remove("username");
                         Cookies.remove("password");
                         Cookies.remove("rememberMe");
                     }
