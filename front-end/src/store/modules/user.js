@@ -10,12 +10,12 @@ import { getToken, setToken, removeToken } from "@/utils/auth";
 
 const user = {
 	state: {
-		toke: getToken(),
+		token: getToken(),
 		name: ""
 	},
 	mutations: {
 		SET_TOKEN: (state, token) => {
-			state.toke = token;
+			state.token = token;
 		},
 		SET_NAME: (state, name) => {
 			state.name = name;
@@ -32,8 +32,8 @@ const user = {
 				login(username, password, uuid)
 					.then(res => {
 						console.log(res);
-						setToken(res.token);
-						commit("SET_TOKEN", res.token);
+						setToken(res.data);
+						commit("SET_TOKEN", res.data);
 						resolve();
 					})
 					.catch(error => {

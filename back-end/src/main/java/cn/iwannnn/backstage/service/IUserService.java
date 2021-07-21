@@ -1,8 +1,8 @@
 package cn.iwannnn.backstage.service;
 
-import cn.iwannnn.backstage.dto.LoginDto;
+import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.models.AjaxResult;
 
 public interface IUserService {
-	public AjaxResult login(LoginDto data);
+	public AjaxResult login(UserDto data);
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.iwannnn.backstage.dto.LoginDto;
+import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.models.AjaxResult;
 import cn.iwannnn.backstage.service.impl.UserServiceImpl;
 import cn.iwannnn.backstage.utils.UUIDUtil;
@@ -22,7 +22,7 @@ public class UserController {
 	private UserServiceImpl userServiceImpl;
 
 	@RequestMapping("/login")
-	public AjaxResult login(@RequestBody LoginDto data) {
+	public AjaxResult login(@RequestBody UserDto data) {
 		log.info(data.toString());
 		return userServiceImpl.login(data);
 	}

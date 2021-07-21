@@ -1,5 +1,14 @@
 import request from "@/utils/request";
 
+
+//获取uuid
+export function getUUID() {
+	return request({
+		url: "/getUUID",
+		method: "get"
+	})
+}
+
 // 登录方法
 export function login(account, password, uuid) {
 	const data = {
@@ -24,9 +33,3 @@ export function logout() {
 	});
 }
 
-export function getUUID() {
-	return request({
-		url: "/getUUID",
-		method: "get"
-	})
-}
