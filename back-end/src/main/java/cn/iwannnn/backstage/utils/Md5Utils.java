@@ -8,7 +8,7 @@ import java.security.NoSuchAlgorithmException;
  * MD5加密/验证工具类
  *
  */
-public class MD5Util {
+public class Md5Utils {
 
 	static final char hexDigits[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
 	static final char hexDigitsLower[] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e',
@@ -131,7 +131,7 @@ public class MD5Util {
 	/**
 	 * MD5加密后生成32位(小写字母+数字)字符串 同 MD5Lower() 一样
 	 */
-	public final static String MD5(String plainText) {
+	public final static String createMD5(String plainText) {
 		try {
 			MessageDigest mdTemp = MessageDigest.getInstance("MD5");
 
@@ -160,7 +160,7 @@ public class MD5Util {
 	 * @return 校验结果
 	 */
 	public static boolean valid(String text, String md5) {
-		return md5.equals(MD5(text)) || md5.equals(MD5(text).toUpperCase());
+		return md5.equals(createMD5(text)) || md5.equals(createMD5(text).toUpperCase());
 	}
 
 }
