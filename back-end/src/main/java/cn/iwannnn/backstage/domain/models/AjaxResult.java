@@ -1,8 +1,8 @@
-package cn.iwannnn.backstage.models;
+package cn.iwannnn.backstage.domain.models;
 
 import java.util.HashMap;
 
-import cn.iwannnn.backstage.constants.HttpStatues;
+import cn.iwannnn.backstage.constants.HttpStatus;
 
 public class AjaxResult extends HashMap<String, Object> {
 
@@ -38,7 +38,7 @@ public class AjaxResult extends HashMap<String, Object> {
 	}
 
 	public static AjaxResult success(String msg, Object data) {
-		return new AjaxResult(HttpStatues.SUCCESS, msg, data);
+		return new AjaxResult(HttpStatus.SUCCESS, msg, data);
 	}
 
 	public static AjaxResult error() {
@@ -54,7 +54,7 @@ public class AjaxResult extends HashMap<String, Object> {
 	}
 
 	public static AjaxResult error(String msg, Object data) {
-		return AjaxResult.error(HttpStatues.ERROR, msg, data);
+		return AjaxResult.error(HttpStatus.ERROR, msg, data);
 	}
 
 	public static AjaxResult error(int code, String msg, Object data) {

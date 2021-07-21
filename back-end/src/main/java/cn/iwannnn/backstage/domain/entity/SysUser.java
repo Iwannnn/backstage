@@ -1,4 +1,4 @@
-package cn.iwannnn.backstage.domain;
+package cn.iwannnn.backstage.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -8,13 +8,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
-public class User {
+public class SysUser {
 	@TableId(value = "id")
 	private String userId;
 
 	private String deptId;
 
-	private String account;
+	private String username;
 
 	private String password;
 

@@ -1,6 +1,6 @@
 package cn.iwannnn.backstage.constants;
 
-public class HttpStatues {
+public class HttpStatus {
 	public static final int CONTINUE = 100;
 
 	public static final int SWITCHING_PROTOCOLS = 101;
