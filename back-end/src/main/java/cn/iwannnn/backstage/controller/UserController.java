@@ -10,9 +10,7 @@ import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.service.ISysUserService;
 import cn.iwannnn.backstage.utils.uuid.IdUtils;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @CrossOrigin
 @RestController()
 @RequestMapping()

@@ -11,9 +11,7 @@ import cn.iwannnn.backstage.mapper.SysUserMapper;
 import cn.iwannnn.backstage.service.ISysUserService;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.Md5Utils;
-import lombok.extern.log4j.Log4j2;
 
-@Log4j2
 @Service
 public class SysUserServiceImpl implements ISysUserService {
 
