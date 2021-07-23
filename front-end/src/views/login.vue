@@ -1,9 +1,3 @@
-<!--
- * @Author: iwan
- * @Description: 
- * @Date: 2021-07-15 17:27:40
- * @FilePath: \backstage\front-end\src\views\login.vue
--->
 <template>
     <div class="login" style="">
         <el-form
@@ -56,6 +50,7 @@
 <script>
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
+import { getToken } from "@/utils/auth";
 
 export default {
     name: "Login",
@@ -88,10 +83,26 @@ export default {
             redirect: undefined,
         };
     },
+    watch: {
+        $route: {
+            handler: function (route) {
+                this.redirect = route.query && route.query.redirect;
+            },
+            immediate: true,
+        },
+    },
     created() {
+        this.checkToken();
         this.getCookie();
     },
     methods: {
+        checkToken() {
+            let token = getToken();
+            console.log(token);
+            if (token) {
+                this.$router.push({ path: "/index" }).catch(() => {});
+            }
+        },
         getCookie() {
             const username = Cookies.get("username");
             const password = Cookies.get("password");
@@ -106,8 +117,6 @@ export default {
                 rememberMe:
                     rememberMe === undefined ? false : Boolean(rememberMe),
             };
-            console.log("from cookie");
-            console.log(this.loginForm);
         },
         handleLogin() {
             this.$refs.loginForm.validate((valid) => {
@@ -135,8 +144,9 @@ export default {
                     this.$store
                         .dispatch("Login", this.loginForm)
                         .then(() => {
-                            //TODO 页面跳转
-                            console.log("success");
+                            this.$router
+                                .push({ path: "/index" })
+                                .catch(() => {});
                         })
                         .catch(() => {
                             this.loading = false;

@@ -2,7 +2,6 @@ package cn.iwannnn.backstage.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -16,11 +15,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import cn.iwannnn.backstage.security.fliter.JwtAuthenticationTokenFilter;
 import cn.iwannnn.backstage.security.handle.AuthenticationEntryPointImpl;
 
-/**
- * spring security配置
- * 
- * @author ruoyi
- */
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/**
@@ -65,12 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// 过滤请求
 				.authorizeRequests()
 				// 对于登录login 验证码captchaImage 允许匿名访问
-				.antMatchers("/login", "/captchaImage").anonymous()
-				.antMatchers(HttpMethod.GET, "/*.html", "/**/*.html", "/**/*.css", "/**/*.js").permitAll()
-				.antMatchers("/profile/**").anonymous().antMatchers("/common/download**").anonymous()
-				.antMatchers("/common/download/resource**").anonymous().antMatchers("/swagger-ui.html").anonymous()
-				.antMatchers("/swagger-resources/**").anonymous().antMatchers("/webjars/**").anonymous()
-				.antMatchers("/*/api-docs").anonymous().antMatchers("/druid/**").permitAll()
+				.antMatchers("/login").anonymous().antMatchers("/druid/**").permitAll()
 				// 除上面外的所有请求全部需要鉴权认证
 				.anyRequest().authenticated().and().headers().frameOptions().disable();
 		// 添加JWT filter
