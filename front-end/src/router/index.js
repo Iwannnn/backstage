@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import Layout from "@/layout"
 
 
 Vue.use(Router);
@@ -7,7 +8,7 @@ Vue.use(Router);
 const constantRouters = [
 	{
 		path: "/",
-		redirect: "/login"
+		redirect: "index",
 	},
 	{
 		path: "/index",
@@ -18,6 +19,11 @@ const constantRouters = [
 		path: "/login",
 		component: resolve => require(["@/views/login"], resolve),
 		hidden: true
+	},
+	{
+		path: "/redirect",
+		name: "redirect",
+		component: (resolve) => require(["@/views/redirect"], resolve)
 	},
 	{
 		path: "/401",

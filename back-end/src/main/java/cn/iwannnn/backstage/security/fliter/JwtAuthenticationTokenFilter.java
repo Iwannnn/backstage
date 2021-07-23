@@ -12,7 +12,6 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import cn.iwannnn.backstage.domain.models.LoginUser;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.StringUtils;
-import lombok.extern.log4j.Log4j2;
 
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {

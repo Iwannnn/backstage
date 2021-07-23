@@ -50,13 +50,11 @@
 <script>
 import Cookies from "js-cookie";
 import { encrypt, decrypt } from "@/utils/jsencrypt";
-import { getToken } from "@/utils/auth";
 
 export default {
     name: "Login",
     data() {
         return {
-            codeUrl: "",
             cookiePassword: "",
             loginForm: {
                 username: "",
@@ -92,17 +90,9 @@ export default {
         },
     },
     created() {
-        this.checkToken();
         this.getCookie();
     },
     methods: {
-        checkToken() {
-            let token = getToken();
-            console.log(token);
-            if (token) {
-                this.$router.push({ path: "/index" }).catch(() => {});
-            }
-        },
         getCookie() {
             const username = Cookies.get("username");
             const password = Cookies.get("password");
