@@ -1,16 +1,19 @@
-<template></template>
+<template>
+    <div class="app-wrapper">
+        <div class="navbar" />
+        <sidebar />
+        <router-view class="main" />
+        <div class="foot" />
+    </div>
+</template>
 
 <script>
-import { AppMain, Sidebar } from "./components";
-
+import sidebar from "@/layout/components/sidebar";
 export default {
     name: "Layout",
     components: {
-        AppMain,
-        Sidebar,
+        sidebar,
     },
-    computed: {},
-    methods: {},
 };
 </script>
 

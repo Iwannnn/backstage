@@ -8,12 +8,15 @@ Vue.use(Router);
 const constantRouters = [
 	{
 		path: "/",
+		component: Layout,
 		redirect: "index",
-	},
-	{
-		path: "/index",
-		component: resolve => require(["@/views/index"], resolve),
-		hidden: true
+		children: [
+			{
+				path: "/index",
+				component: resolve => require(["@/views/index"], resolve),
+				hidden: true
+			},
+		]
 	},
 	{
 		path: "/login",

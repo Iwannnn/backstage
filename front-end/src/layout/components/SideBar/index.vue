@@ -87,6 +87,7 @@
 </template>
 <script>
 export default {
+    name: "sidebar",
     methods: {
         handleOpen(key, keyPath) {
             console.log(key, keyPath);
