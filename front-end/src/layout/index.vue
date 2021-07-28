@@ -1,13 +1,11 @@
 <template>
     <el-container>
-        <el-header><navbar /></el-header>
+        <el-aside width="250px"><sidebar /></el-aside>
         <el-container>
-            <el-aside><sidebar /></el-aside>
-            <el-container>
-                <el-main><router-view /></el-main>
-            </el-container>
+            <el-header><navbar /></el-header>
+            <el-main><router-view /></el-main>
+            <el-footer>iwannnn.cn</el-footer>
         </el-container>
-        <el-footer>Footer</el-footer>
     </el-container>
 </template>
 
@@ -24,6 +22,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.el-container {
+    height: 100%;
+}
 .el-header,
 .el-footer {
     background-color: #b3c0d1;
@@ -42,17 +43,5 @@ export default {
     color: #333;
     text-align: center;
     line-height: 160px;
-}
-body > .el-container {
-    margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-    line-height: 320px;
 }
 </style>
