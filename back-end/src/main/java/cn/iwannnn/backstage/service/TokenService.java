@@ -18,12 +18,9 @@ import cn.iwannnn.backstage.utils.uuid.IdUtils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import lombok.extern.log4j.Log4j2;
 
-/**
- * token验证处理
- *
- * @author ruoyi
- */
+@Log4j2
 @Component
 public class TokenService {
 	// 令牌自定义标识
@@ -85,7 +82,9 @@ public class TokenService {
 			// 解析对应的权限以及用户信息
 			String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
 			String userKey = getTokenKey(uuid);
+			log.info(uuid);
 			LoginUser user = redisCache.getCacheObject(userKey);
+			log.info(user);
 			return user;
 		}
 		return null;
