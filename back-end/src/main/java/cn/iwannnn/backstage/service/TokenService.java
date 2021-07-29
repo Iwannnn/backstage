@@ -82,9 +82,12 @@ public class TokenService {
 			// 解析对应的权限以及用户信息
 			String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
 			String userKey = getTokenKey(uuid);
-			log.info(uuid);
-			LoginUser user = redisCache.getCacheObject(userKey);
-			log.info(user);
+			LoginUser user;
+			try {
+				user = redisCache.getCacheObject(userKey);
+			} catch (ClassCastException e) {
+				return null;
+			}
 			return user;
 		}
 		return null;

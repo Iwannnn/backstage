@@ -12,7 +12,9 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import cn.iwannnn.backstage.domain.models.LoginUser;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.StringUtils;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Component
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	@Autowired
@@ -22,7 +24,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 			throws ServletException, IOException {
 		LoginUser loginUser = tokenService.getLoginUser(request);
-		// log.info(loginUser.toString());
+		log.info(loginUser);
 		if (StringUtils.isNotNull(loginUser)) {
 			tokenService.verifyToken(loginUser);
 		}

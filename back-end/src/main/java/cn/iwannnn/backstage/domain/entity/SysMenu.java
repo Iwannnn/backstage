@@ -22,6 +22,8 @@ public class SysMenu {
 
 	private String isCache;
 
+	private String menuType;
+
 	private String icon;
 
 	private String createTime;
