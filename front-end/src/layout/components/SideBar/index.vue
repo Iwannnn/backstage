@@ -8,12 +8,9 @@
             background-color="#d3dce6"
             text-color="#000000"
             active-text-color="#123456"
+            :router="true"
         >
-            <el-submenu
-                v-for="menu in menus"
-                :key="menu.menuId"
-                :index="menu.menuId.toString()"
-            >
+            <el-submenu v-for="menu in menus" :key="menu.menuId">
                 <template slot="title">
                     <i class="el-icon-location"></i>
                     <span>{{ menu.menuName }}</span>
@@ -21,14 +18,13 @@
                 <el-menu-item-group
                     v-for="content in contents"
                     :key="content.menuId"
-                    :index="content.menuId.toString()"
                 >
                     <template slot="title">{{ content.menuName }}</template>
                     <div v-if="content.parentId === menu.menuId">
                         <el-menu-item
                             v-for="item in items"
                             :key="item.menuId"
-                            :index="item.menuId.toString()"
+                            :index="item.component.toString()"
                         >
                             <span v-if="item.parentId === content.menuId">
                                 {{ item.menuName }}
@@ -39,7 +35,7 @@
                 <el-menu-item
                     v-for="item in items"
                     :key="item.menuId"
-                    :index="item.menuId.toString()"
+                    :index="item.component.toString()"
                 >
                     <span v-if="item.parentId === menu.menuId">
                         {{ item.menuName }}
@@ -63,7 +59,7 @@ export default {
     },
     created() {
         getMenuList().then((res) => {
-            console.log(res);
+            // console.log(res);
             for (var i = 0; i < res.data.length; i++) {
                 if (res.data[i].menuType === "M") {
                     this.menus.push(res.data[i]);
@@ -73,9 +69,9 @@ export default {
                     this.items.push(res.data[i]);
                 }
             }
-            console.log(this.menus);
-            console.log(this.contents);
-            console.log(this.items);
+            // console.log(this.menus);
+            // console.log(this.contents);
+            // console.log(this.items);
         });
     },
     methods: {

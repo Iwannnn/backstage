@@ -29,6 +29,28 @@ const constantRouters = [
 		component: (resolve) => require(["@/views/redirect"], resolve)
 	},
 	{
+		path: "/system",
+		name: "system",
+		component: Layout,
+		children: [
+			{
+				path: "user",
+				name: "user",
+				component: (resolve) => require(["@/views/system/user"], resolve)
+			},
+			{
+				path: "dept",
+				name: "dept",
+				component: (resolve) => require(["@/views/system/dept"], resolve)
+			},
+			{
+				path: "task",
+				name: "task",
+				component: (resolve) => require(["@/views/system/task"], resolve)
+			}
+		]
+	},
+	{
 		path: "/401",
 		component: resolve => require(["@/views/error/401"], resolve),
 		hidden: true
