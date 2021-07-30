@@ -10,9 +10,12 @@
             active-text-color="#123456"
             :router="true"
         >
-            <el-submenu v-for="menu in menus" :key="menu.menuId">
+            <el-submenu
+                v-for="menu in menus"
+                :key="menu.menuId"
+                :index="menu.component"
+            >
                 <template slot="title">
-                    <i class="el-icon-location"></i>
                     <span>{{ menu.menuName }}</span>
                 </template>
                 <el-menu-item-group
@@ -20,24 +23,24 @@
                     :key="content.menuId"
                 >
                     <template slot="title">{{ content.menuName }}</template>
-                    <div v-if="content.parentId === menu.menuId">
-                        <el-menu-item
-                            v-for="item in items"
-                            :key="item.menuId"
-                            :index="item.component.toString()"
-                        >
-                            <span v-if="item.parentId === content.menuId">
-                                {{ item.menuName }}
-                            </span>
-                        </el-menu-item>
-                    </div>
+                    <el-menu-item
+                        v-for="item in items"
+                        :key="item.menuId"
+                        :index="item.component.toString()"
+                        v-show="item.parentId === menu.menuId"
+                    >
+                        <span>
+                            {{ item.menuName }}
+                        </span>
+                    </el-menu-item>
                 </el-menu-item-group>
                 <el-menu-item
                     v-for="item in items"
                     :key="item.menuId"
                     :index="item.component.toString()"
+                    v-show="item.parentId === menu.menuId"
                 >
-                    <span v-if="item.parentId === menu.menuId">
+                    <span>
                         {{ item.menuName }}
                     </span>
                 </el-menu-item>

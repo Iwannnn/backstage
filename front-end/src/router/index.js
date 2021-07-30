@@ -29,24 +29,36 @@ const constantRouters = [
 		component: (resolve) => require(["@/views/redirect"], resolve)
 	},
 	{
-		path: "/system",
-		name: "system",
+		path: "/company",
+		name: "company",
 		component: Layout,
 		children: [
 			{
 				path: "user",
 				name: "user",
-				component: (resolve) => require(["@/views/system/user"], resolve)
+				component: (resolve) => require(["@/views/company/user"], resolve)
 			},
 			{
 				path: "dept",
 				name: "dept",
-				component: (resolve) => require(["@/views/system/dept"], resolve)
+				component: (resolve) => require(["@/views/company/dept"], resolve)
 			},
 			{
 				path: "task",
 				name: "task",
-				component: (resolve) => require(["@/views/system/task"], resolve)
+				component: (resolve) => require(["@/views/company/task"], resolve)
+			}
+		]
+	},
+	{
+		path: "/system",
+		name: "system",
+		component: Layout,
+		children: [
+			{
+				path: "druid",
+				name: "druid",
+				component: (resolve) => require(["@/views/system/druid"], resolve)
 			}
 		]
 	},
