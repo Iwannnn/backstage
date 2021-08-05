@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where username = #{username}
 	</select>
 
-	<select id="slectAll" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
+	<select id="getUserList" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 		select *
 		from company_user
 	</select>

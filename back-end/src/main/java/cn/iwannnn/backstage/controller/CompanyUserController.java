@@ -1,11 +1,18 @@
 package cn.iwannnn.backstage.controller;
 
+import java.util.List;
+
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.PageRequest;
 import cn.iwannnn.backstage.dto.UserDto;
@@ -34,8 +41,12 @@ public class CompanyUserController {
 		return AjaxResult.success("uuid", uuid);
 	}
 
-	@RequestMapping("/getAllUser")
+	@RequestMapping("/getUserList")
 	public AjaxResult getAllUser(@RequestBody PageRequest pageRequest) {
-		return AjaxResult.success(userService.findPage(pageRequest));
+		log.info("getUserList");
+		PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
+		List<CompanyUser> list = userService.getUserList();
+		PageInfo<CompanyUser> pageInfo = new PageInfo<>(list);
+		return AjaxResult.success(pageInfo);
 	}
 }

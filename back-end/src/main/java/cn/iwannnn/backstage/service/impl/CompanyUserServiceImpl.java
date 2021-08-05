@@ -2,23 +2,17 @@ package cn.iwannnn.backstage.service.impl;
 
 import java.util.List;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.LoginUser;
-import cn.iwannnn.backstage.domain.models.PageRequest;
-import cn.iwannnn.backstage.domain.models.PageResult;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.mapper.CompanyUserMapper;
 import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.Md5Utils;
-import cn.iwannnn.backstage.utils.PageUtils;
 
 @Service
 public class CompanyUserServiceImpl implements ICompanyUserService {
@@ -52,16 +46,8 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	}
 
 	@Override
-	public PageResult findPage(PageRequest pageRequest) {
-		return PageUtils.getPageResult(pageRequest, getPageInfo(pageRequest));
-	}
-
-	private PageInfo<CompanyUser> getPageInfo(PageRequest pageRequest) {
-		int pageNum = pageRequest.getPageNum();
-		int pageSize = pageRequest.getPageSize();
-		PageHelper.startPage(pageNum, pageSize);
-		List<CompanyUser> sysMenus = userMapper.selectPage();
-		return new PageInfo<CompanyUser>(sysMenus);
+	public List<CompanyUser> getUserList() {
+		return userMapper.getUserList();
 	}
 
 }

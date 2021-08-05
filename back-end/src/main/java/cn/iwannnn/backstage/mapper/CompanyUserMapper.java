@@ -9,7 +9,5 @@ import cn.iwannnn.backstage.domain.entity.CompanyUser;
 public interface CompanyUserMapper extends BaseMapper<CompanyUser> {
 	CompanyUser selectByUsername(String username);
 
-	List<CompanyUser> selectAll();
-
-	List<CompanyUser> selectPage();
+	List<CompanyUser> getUserList();
 }

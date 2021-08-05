@@ -1,9 +1,9 @@
 package cn.iwannnn.backstage.service;
 
+import java.util.List;
+
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
-import cn.iwannnn.backstage.domain.models.PageRequest;
-import cn.iwannnn.backstage.domain.models.PageResult;
 import cn.iwannnn.backstage.dto.UserDto;
 
 public interface ICompanyUserService {
@@ -11,5 +11,5 @@ public interface ICompanyUserService {
 
 	public CompanyUser selectUserByUsername(String username);
 
-	public PageResult findPage(PageRequest pageRequest);
+	public List<CompanyUser> getUserList();
 }
