@@ -41,6 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * @return
 	 * @throws Exception
 	 */
+
 	@Bean
 	@Override
 	public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -58,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 				// 过滤请求
 				.authorizeRequests()
-				// 对于登录login 验证码captchaImage 允许匿名访问
+				// 对于登录login 验证码captchImage 允许匿名访问
 				.antMatchers("/login").anonymous().antMatchers("/system/**", "/company/**").anonymous()
 				.antMatchers("/druid/**").permitAll()
 				// 除上面外的所有请求全部需要鉴权认证

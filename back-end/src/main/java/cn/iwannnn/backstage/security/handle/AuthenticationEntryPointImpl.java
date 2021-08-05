@@ -15,11 +15,6 @@ import cn.iwannnn.backstage.utils.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 
-/**
- * 认证失败处理类 返回未授权
- * 
- * @author ruoyi
- */
 @Component
 public class AuthenticationEntryPointImpl implements AuthenticationEntryPoint, Serializable {
 	private static final long serialVersionUID = -8970718410437077606L;

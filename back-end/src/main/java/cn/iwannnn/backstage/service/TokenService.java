@@ -72,7 +72,7 @@ public class TokenService {
 		redisCache.setCacheObject(userKey, loginUser, expireTime, TimeUnit.MINUTES);
 	}
 
-	public LoginUser getLoginUser(HttpServletRequest request) {
+	public LoginUser getLoginUser(HttpServletRequest request) throws ClassCastException {
 		// 获取请求携带的令牌
 		String token = getToken(request);
 		if (StringUtils.isNotEmpty(token)) {
@@ -80,12 +80,7 @@ public class TokenService {
 			// 解析对应的权限以及用户信息
 			String uuid = (String) claims.get(Constants.LOGIN_USER_KEY);
 			String userKey = getTokenKey(uuid);
-			LoginUser user;
-			try {
-				user = redisCache.getCacheObject(userKey);
-			} catch (ClassCastException e) {
-				return null;
-			}
+			LoginUser user = redisCache.getCacheObject(userKey);
 			return user;
 		}
 		return null;

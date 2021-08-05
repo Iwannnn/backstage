@@ -53,6 +53,10 @@ public class AjaxResult extends HashMap<String, Object> {
 		return AjaxResult.error(msg, null);
 	}
 
+	public static AjaxResult error(int code, String msg) {
+		return AjaxResult.error(code, msg, null);
+	}
+
 	public static AjaxResult error(String msg, Object data) {
 		return AjaxResult.error(HttpStatus.ERROR, msg, data);
 	}
