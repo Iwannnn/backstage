@@ -9,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.PageRequest;
 import cn.iwannnn.backstage.dto.UserDto;
-import cn.iwannnn.backstage.service.ISysUserService;
+import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.utils.uuid.IdUtils;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @CrossOrigin
 @RestController
-@RequestMapping
-public class SysUserController {
+@RequestMapping("/company")
+public class CompanyUserController {
 
 	@Autowired
-	private ISysUserService userService;
+	private ICompanyUserService userService;
 
 	@RequestMapping("/login")
 	public AjaxResult login(@RequestBody UserDto data) {

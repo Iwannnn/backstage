@@ -6,16 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.iwannnn.backstage.domain.models.AjaxResult;
-import cn.iwannnn.backstage.service.ISysMenuService;
+import cn.iwannnn.backstage.service.ISystemMenuService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @CrossOrigin
 @RestController
-@RequestMapping
-public class SysMenuController {
+@RequestMapping("/system")
+public class SystemMenuController {
 	@Autowired
-	private ISysMenuService menuService;
+	private ISystemMenuService menuService;
 
 	@RequestMapping("/getMenuList")
 	private AjaxResult getMenuList() {

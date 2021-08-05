@@ -1,5 +1,5 @@
 package cn.iwannnn.backstage.controller;
 
-public class SysTaskController {
+public class CompanyDeptController {
 
 }

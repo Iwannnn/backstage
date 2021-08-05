@@ -8,9 +8,9 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import cn.iwannnn.backstage.domain.entity.SysUser;
+import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.LoginUser;
-import cn.iwannnn.backstage.service.ISysUserService;
+import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.utils.StringUtils;
 
 @Service
@@ -18,11 +18,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	private static final Logger log = LoggerFactory.getLogger(UserDetailsServiceImpl.class);
 
 	@Autowired
-	private ISysUserService userService;
+	private ICompanyUserService userService;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		SysUser user = userService.selectUserByUsername(username);
+		CompanyUser user = userService.selectUserByUsername(username);
 		if (StringUtils.isNull(user)) {
 			log.info("登录用户：{} 不存在.", username);
 			throw new UsernameNotFoundException("登录用户：" + username + " 不存在");
@@ -31,7 +31,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		return createLoginUser(user);
 	}
 
-	public UserDetails createLoginUser(SysUser user) {
+	public UserDetails createLoginUser(CompanyUser user) {
 		return new LoginUser(user);
 	}
 }

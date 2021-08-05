@@ -2,15 +2,15 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="cn.iwannnn.backstage.mapper.SysUserMapper">
+<mapper namespace="cn.iwannnn.backstage.mapper.CompanyUserMapper">
 
-	<select id="selectByUsername" resultType="cn.iwannnn.backstage.domain.entity.SysUser">
+	<select id="selectByUsername" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 	    select *
 	    from sys_user
 		where username = #{username}
 	</select>
 
-	<select id="slectAll" resultType="cn.iwannnn.backstage.domain.entity.SysUser">
+	<select id="slectAll" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 		select *
 		from sys_user
 	</select>

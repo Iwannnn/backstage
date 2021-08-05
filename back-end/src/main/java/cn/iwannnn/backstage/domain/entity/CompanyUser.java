@@ -8,7 +8,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 @Data
-public class SysUser {
+public class CompanyUser {
 	@TableId(value = "id")
 	private String userId;
 

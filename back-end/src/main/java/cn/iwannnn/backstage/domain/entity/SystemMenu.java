@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 
 @Data
-public class SysMenu {
+public class SystemMenu {
 
 	@TableId(value = "id")
 	private String menuId;

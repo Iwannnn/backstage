@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import cn.iwannnn.backstage.domain.entity.SysUser;
+import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import lombok.Data;
 
 @Data
@@ -56,12 +56,12 @@ public class LoginUser implements UserDetails {
 	/**
 	 * 用户信息
 	 */
-	private SysUser user;
+	private CompanyUser user;
 
 	public LoginUser() {
 	}
 
-	public LoginUser(SysUser user) {
+	public LoginUser(CompanyUser user) {
 		this.user = user;
 	}
 
