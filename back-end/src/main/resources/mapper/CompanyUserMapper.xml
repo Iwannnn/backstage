@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectByUsername" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 	    select *
-	    from sys_user
+	    from company_user
 		where username = #{username}
 	</select>
 
 	<select id="slectAll" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 		select *
-		from sys_user
+		from company_user
 	</select>
 </mapper>

@@ -6,6 +6,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<select id="selectAll" resultType="cn.iwannnn.backstage.domain.entity.SystemMenu">
 	    select *
-	    from sys_menu
+	    from system_menu
 	</select>
 </mapper>

@@ -14,7 +14,7 @@ import cn.iwannnn.backstage.domain.models.LoginUser;
 import cn.iwannnn.backstage.domain.models.PageRequest;
 import cn.iwannnn.backstage.domain.models.PageResult;
 import cn.iwannnn.backstage.dto.UserDto;
-import cn.iwannnn.backstage.mapper.ConpanyUserMapper;
+import cn.iwannnn.backstage.mapper.CompanyUserMapper;
 import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.Md5Utils;
@@ -24,7 +24,7 @@ import cn.iwannnn.backstage.utils.PageUtils;
 public class CompanyUserServiceImpl implements ICompanyUserService {
 
 	@Autowired
-	ConpanyUserMapper userMapper;
+	CompanyUserMapper userMapper;
 
 	@Autowired
 	TokenService tokenService;

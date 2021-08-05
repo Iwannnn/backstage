@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 
-public interface ConpanyUserMapper extends BaseMapper<CompanyUser> {
+public interface CompanyUserMapper extends BaseMapper<CompanyUser> {
 	CompanyUser selectByUsername(String username);
 
 	List<CompanyUser> selectAll();
