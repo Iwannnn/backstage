@@ -40,19 +40,6 @@ const user = {
 					});
 			});
 		},
-		Logout({ commit, state }) {
-			return new Promise((resolve, reject) => {
-				logout(state, token)
-					.then(() => {
-						commit("SET_TOKEN", "");
-						removeToken();
-						resolve();
-					})
-					.catch(error => {
-						reject(error);
-					});
-			});
-		}
 	}
 };
 

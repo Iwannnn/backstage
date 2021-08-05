@@ -3,7 +3,7 @@ import request from '@/utils/request';
 
 export function getMenuList() {
 	return request({
-		url: "/getMenuList",
+		url: "/system/getMenuList",
 		method: "get",
 	});
 }

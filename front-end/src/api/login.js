@@ -9,18 +9,8 @@ export function login(username, password) {
 	};
 	console.log(data);
 	return request({
-		url: "/login",
+		url: "/company/login",
 		method: "post",
 		data: data
 	});
 }
-
-
-// 退出方法
-export function logout() {
-	return request({
-		url: "/logout",
-		method: "post"
-	});
-}
-
