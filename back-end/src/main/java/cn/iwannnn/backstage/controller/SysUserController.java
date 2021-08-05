@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cn.iwannnn.backstage.domain.models.AjaxResult;
+import cn.iwannnn.backstage.domain.models.PageRequest;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.service.ISysUserService;
 import cn.iwannnn.backstage.utils.uuid.IdUtils;
@@ -31,5 +32,10 @@ public class SysUserController {
 	public AjaxResult getUUID() {
 		String uuid = IdUtils.fastUUID();
 		return AjaxResult.success("uuid", uuid);
+	}
+
+	@RequestMapping("/getUserInfo")
+	public AjaxResult getUserInfo(@RequestBody PageRequest pageRequest) {
+		return AjaxResult.success(userService.findPage(pageRequest));
 	}
 }
