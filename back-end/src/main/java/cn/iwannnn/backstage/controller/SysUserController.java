@@ -34,8 +34,8 @@ public class SysUserController {
 		return AjaxResult.success("uuid", uuid);
 	}
 
-	@RequestMapping("/getUserInfo")
-	public AjaxResult getUserInfo(@RequestBody PageRequest pageRequest) {
+	@RequestMapping("/getAllUser")
+	public AjaxResult getAllUser(@RequestBody PageRequest pageRequest) {
 		return AjaxResult.success(userService.findPage(pageRequest));
 	}
 }
