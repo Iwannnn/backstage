@@ -7,7 +7,7 @@ export function getAllUser(pageRequest) {
 	};
 	console.log(data);
 	return request({
-		url: "/company/getUserList",
+		url: "/company/user/getUserList",
 		method: "post",
 		data: data
 	})

@@ -12,7 +12,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @CrossOrigin
 @RestController
-@RequestMapping("/system")
+@RequestMapping("/system/menu")
 public class SystemMenuController {
 	@Autowired
 	private ISystemMenuService menuService;

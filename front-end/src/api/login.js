@@ -9,7 +9,7 @@ export function login(username, password) {
 	};
 	console.log(data);
 	return request({
-		url: "/company/login",
+		url: "/company/user/login",
 		method: "post",
 		data: data
 	});
