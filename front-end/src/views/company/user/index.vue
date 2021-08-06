@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { getAllUser } from "@/api/company/user";
+import { getUserList } from "@/api/company/user";
 export default {
     name: "user",
     data() {
@@ -15,7 +15,7 @@ export default {
         };
     },
     created() {
-        getAllUser(this.pageRequest).then((res) => {
+        getUserList(this.pageRequest).then((res) => {
             console.log(res);
         });
     },

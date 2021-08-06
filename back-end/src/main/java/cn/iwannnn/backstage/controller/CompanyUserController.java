@@ -42,7 +42,7 @@ public class CompanyUserController {
 
 	@RequestMapping("/getUserList")
 	public AjaxResult getAllUser(@RequestBody PageRequest pageRequest) {
-		log.info("getUserList");
+		// log.info("getUserList");
 		PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
 		List<CompanyUser> list = userService.getUserList();
 		PageInfo<CompanyUser> pageInfo = new PageInfo<>(list);
