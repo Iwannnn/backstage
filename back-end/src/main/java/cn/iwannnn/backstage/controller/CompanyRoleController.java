@@ -1,3 +1,4 @@
+
 package cn.iwannnn.backstage.controller;
 
 import java.util.List;
@@ -10,25 +11,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import cn.iwannnn.backstage.domain.entity.CompanyDept;
+import cn.iwannnn.backstage.domain.entity.CompanyRole;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.PageRequest;
-import cn.iwannnn.backstage.service.ICompanyDeptService;
+import cn.iwannnn.backstage.service.ICompanyRoleService;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-@RestController("/company/dept")
-public class CompanyDeptController {
+@RestController("/company/role")
+public class CompanyRoleController {
 
 	@Autowired
-	ICompanyDeptService deptService;
+	ICompanyRoleService roleService;
 
-	@RequestMapping("/getDeptList")
-	public AjaxResult getDeptList(@RequestBody PageRequest pageRequest) {
-		log.info("getDeptList");
+	@RequestMapping("/getRoleList")
+	public AjaxResult getRoleList(@RequestBody PageRequest pageRequest) {
+		log.info("getRoleList");
 		PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageSize());
-		List<CompanyDept> list = deptService.getDeptList();
-		PageInfo<CompanyDept> pageInfo = new PageInfo<>(list);
+		List<CompanyRole> list = roleService.getRoleList();
+		PageInfo<CompanyRole> pageInfo = new PageInfo<>(list);
 		return AjaxResult.success(pageInfo);
 	}
 }
