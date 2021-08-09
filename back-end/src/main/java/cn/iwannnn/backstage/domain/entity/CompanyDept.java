@@ -19,11 +19,7 @@ public class CompanyDept {
 
 	private String orderNum;
 
-	private String leaderName;
-
-	private String phone;
-
-	private String email;
+	private String userId;
 
 	private String createBy;
 

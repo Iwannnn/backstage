@@ -17,11 +17,7 @@ public class CompanyTask {
 
 	private String leaderId;
 
-	private String leaderName;
-
-	private String phone;
-
-	private String email;
+	private String userName;
 
 	private String createBy;
 
