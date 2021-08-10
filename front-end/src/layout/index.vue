@@ -3,7 +3,10 @@
         <el-aside width="250px"><sidebar /></el-aside>
         <el-container>
             <el-header><navbar /></el-header>
-            <el-main><router-view /></el-main>
+            <el-main>
+                <breadcrumb />
+                <router-view
+            /></el-main>
             <el-footer>iwannnn.cn</el-footer>
         </el-container>
     </el-container>
@@ -12,11 +15,13 @@
 <script>
 import sidebar from "@/layout/components/sidebar";
 import navbar from "@/layout/components/navbar";
+import breadcrumb from "@/layout/components/breadcrumb";
 export default {
     name: "Layout",
     components: {
         sidebar,
         navbar,
+        breadcrumb,
     },
 };
 </script>

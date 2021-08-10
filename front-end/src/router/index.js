@@ -32,21 +32,25 @@ const constantRouters = [
 		path: "/company",
 		name: "company",
 		component: Layout,
+		meta: ["企业管理"],
 		children: [
 			{
 				path: "user",
 				name: "user",
-				component: (resolve) => require(["@/views/company/user"], resolve)
+				component: (resolve) => require(["@/views/company/user"], resolve),
+				meta: ["人员管理"]
 			},
 			{
 				path: "dept",
 				name: "dept",
-				component: (resolve) => require(["@/views/company/dept"], resolve)
+				component: (resolve) => require(["@/views/company/dept"], resolve),
+				meta: ["部门管理"]
 			},
 			{
 				path: "task",
 				name: "task",
-				component: (resolve) => require(["@/views/company/task"], resolve)
+				component: (resolve) => require(["@/views/company/task"], resolve),
+				meta: ["任务管理"]
 			}
 		]
 	},
