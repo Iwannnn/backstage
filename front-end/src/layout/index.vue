@@ -5,8 +5,8 @@
             <el-header><navbar /></el-header>
             <el-main>
                 <breadcrumb />
-                <router-view
-            /></el-main>
+                <keep-alive><router-view /></keep-alive>
+            </el-main>
             <el-footer>iwannnn.cn</el-footer>
         </el-container>
     </el-container>

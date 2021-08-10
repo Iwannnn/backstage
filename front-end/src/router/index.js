@@ -32,25 +32,57 @@ const constantRouters = [
 		path: "/company",
 		name: "company",
 		component: Layout,
-		meta: ["企业管理"],
 		children: [
 			{
 				path: "user",
 				name: "user",
 				component: (resolve) => require(["@/views/company/user"], resolve),
-				meta: ["人员管理"]
+				meta: {
+					breadcrumb: [
+						{
+							name: "企业管理",
+							path: ""
+						},
+						{
+							name: "人员管理",
+							path: ""
+						}
+					]
+				}
 			},
 			{
 				path: "dept",
 				name: "dept",
 				component: (resolve) => require(["@/views/company/dept"], resolve),
-				meta: ["部门管理"]
+				meta: {
+					breadcrumb: [
+						{
+							name: "企业管理",
+							path: ""
+						},
+						{
+							name: "部门管理",
+							path: ""
+						}
+					]
+				}
 			},
 			{
 				path: "task",
 				name: "task",
 				component: (resolve) => require(["@/views/company/task"], resolve),
-				meta: ["任务管理"]
+				meta: {
+					breadcrumb: [
+						{
+							name: "企业管理",
+							path: ""
+						},
+						{
+							name: "任务管理",
+							path: ""
+						}
+					]
+				}
 			}
 		]
 	},
@@ -62,8 +94,21 @@ const constantRouters = [
 			{
 				path: "druid",
 				name: "druid",
-				component: (resolve) => require(["@/views/system/druid"], resolve)
+				component: (resolve) => require(["@/views/system/druid"], resolve),
+				meta: {
+					breadcrumb: [
+						{
+							name: "系统管理",
+							path: ""
+						},
+						{
+							name: "数据监控",
+							path: ""
+						}
+					]
+				}
 			}
+
 		]
 	},
 	{

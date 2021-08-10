@@ -1,12 +1,12 @@
 <template>
     <div>
         <el-breadcrumb separator-class="el-icon-arrow-right" class="breadcrumb">
-            <el-breadcrumb-item><a href="/">首页</a></el-breadcrumb-item>
+            <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
             <el-breadcrumb-item
-                v-for="(item, index) in $route.meta"
-                v-bind:key="index"
+                v-for="item in breadcrumb"
+                v-bind:key="item.name"
             >
-                {{ item }}
+                {{ item.name }}
             </el-breadcrumb-item>
         </el-breadcrumb>
     </div>
@@ -15,6 +15,11 @@
 <script>
 export default {
     name: "breadcrumb",
+    computed: {
+        breadcrumb() {
+            return this.$route.meta.breadcrumb;
+        },
+    },
 };
 </script>
 
