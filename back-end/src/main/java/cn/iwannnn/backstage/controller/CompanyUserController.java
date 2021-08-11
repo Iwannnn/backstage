@@ -57,6 +57,6 @@ public class CompanyUserController {
 
 	@RequestMapping("/checkExist")
 	public AjaxResult checkExist(@RequestBody RegisterDto data) {
-		return userService.checkExist(data) == true ? AjaxResult.success() : AjaxResult.error();
+		return userService.checkExist(data) == true ? AjaxResult.success() : AjaxResult.success("exist");
 	}
 }
