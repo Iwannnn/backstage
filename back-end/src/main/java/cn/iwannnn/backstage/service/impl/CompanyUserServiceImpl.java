@@ -58,7 +58,7 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	}
 
 	@Override
-	public boolean checkInfo(RegisterDto data) {
-		return userMapper.checkExit(data).toString() == "[]";
+	public boolean checkExist(RegisterDto data) {
+		return userMapper.checkExist(data).toString() == "[]";
 	}
 }

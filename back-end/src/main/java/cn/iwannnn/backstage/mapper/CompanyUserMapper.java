@@ -12,5 +12,5 @@ public interface CompanyUserMapper extends BaseMapper<CompanyUser> {
 
 	List<CompanyUser> getUserList();
 
-	List<CompanyUser> checkExit(RegisterDto data);
+	List<CompanyUser> checkExist(RegisterDto data);
 }

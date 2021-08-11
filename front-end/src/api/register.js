@@ -30,7 +30,7 @@ export function checkExist(type, info) {
 		info
 	};
 	return request({
-		url: "/company/user/checkInfo",
+		url: "/company/user/checkExist",
 		method: "post",
 		data: data
 	})

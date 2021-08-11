@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		from company_user
 	</select>
 
-	<select id="checkExit" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
+	<select id="checkExist" resultType="cn.iwannnn.backstage.domain.entity.CompanyUser">
 		select *
 		from company_user
 		where ${type} = #{info}

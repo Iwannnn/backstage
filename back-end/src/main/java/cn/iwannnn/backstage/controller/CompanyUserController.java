@@ -55,8 +55,8 @@ public class CompanyUserController {
 		return userService.insertUser(userForm) == 0 ? AjaxResult.error() : AjaxResult.success();
 	}
 
-	@RequestMapping("/checkInfo")
-	public AjaxResult checkInfo(@RequestBody RegisterDto data) {
-		return userService.checkInfo(data) == true ? AjaxResult.success() : AjaxResult.error();
+	@RequestMapping("/checkExist")
+	public AjaxResult checkExist(@RequestBody RegisterDto data) {
+		return userService.checkExist(data) == true ? AjaxResult.success() : AjaxResult.error();
 	}
 }

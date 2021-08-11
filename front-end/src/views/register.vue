@@ -52,7 +52,7 @@
     </div>
 </template>
 <script>
-import { register } from "@/api/register";
+import { register, checkExist } from "@/api/register";
 export default {
     name: "Register",
     data() {
@@ -86,6 +86,26 @@ export default {
                 callback();
             }
         };
+        var checkUsername = (rule, value, callback) => {
+            checkExist("username", value).then((res) => {
+                console.log(res);
+                callback;
+            });
+        };
+        var checkEmail = (rule, value, callback) => {
+            if (checkExist(value)) {
+                callback(new Error("账号重复"));
+            } else {
+                callback();
+            }
+        };
+        var checkPhonenumber = (rule, value, callback) => {
+            if (checkExist(value)) {
+                callback(new Error("账号重复"));
+            } else {
+                callback();
+            }
+        };
         return {
             registerForm: {
                 username: "",
@@ -101,6 +121,10 @@ export default {
                     {
                         required: true,
                         message: "请输入账号",
+                        trigger: "blur",
+                    },
+                    {
+                        validator: checkUsername,
                         trigger: "blur",
                     },
                 ],
