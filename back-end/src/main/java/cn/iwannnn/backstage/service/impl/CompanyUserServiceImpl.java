@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.LoginUser;
+import cn.iwannnn.backstage.dto.RegisterDto;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.mapper.CompanyUserMapper;
 import cn.iwannnn.backstage.service.ICompanyUserService;
@@ -54,5 +55,10 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	public int insertUser(CompanyUser userForm) {
 		userForm.setPassword(Md5Utils.createMD5(userForm.getPassword()));
 		return userMapper.insert(userForm);
+	}
+
+	@Override
+	public boolean checkInfo(RegisterDto data) {
+		return userMapper.checkExit(data).toString() == "[]";
 	}
 }

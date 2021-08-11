@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
 import cn.iwannnn.backstage.domain.models.PageRequest;
+import cn.iwannnn.backstage.dto.RegisterDto;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.utils.uuid.IdUtils;
@@ -51,7 +52,11 @@ public class CompanyUserController {
 
 	@RequestMapping("/register")
 	public AjaxResult register(@RequestBody CompanyUser userForm) {
-
 		return userService.insertUser(userForm) == 0 ? AjaxResult.error() : AjaxResult.success();
+	}
+
+	@RequestMapping("/checkInfo")
+	public AjaxResult checkInfo(@RequestBody RegisterDto data) {
+		return userService.checkInfo(data) == true ? AjaxResult.success() : AjaxResult.error();
 	}
 }

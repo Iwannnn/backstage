@@ -1,14 +1,13 @@
 import request from "@/utils/request";
 
 
-// 登录方法
 export function register(registerForm) {
-	let username = registerForm.username
-	let password = registerForm.password
-	let nickname = registerForm.nickname
-	let sex = registerForm.sex
-	let email = registerForm.email
-	let phonenumber = registerForm.phonenumber
+	let username = registerForm.username;
+	let password = registerForm.password;
+	let nickname = registerForm.nickname;
+	let sex = registerForm.sex;
+	let email = registerForm.email;
+	let phonenumber = registerForm.phonenumber;
 	const data = {
 		username,
 		password,
@@ -25,3 +24,14 @@ export function register(registerForm) {
 	});
 }
 
+export function checkExist(type, info) {
+	const data = {
+		type,
+		info
+	};
+	return request({
+		url: "/company/user/checkInfo",
+		method: "post",
+		data: data
+	})
+}
