@@ -48,4 +48,10 @@ public class CompanyUserController {
 		PageInfo<CompanyUser> pageInfo = new PageInfo<>(list);
 		return AjaxResult.success(pageInfo);
 	}
+
+	@RequestMapping("/register")
+	public AjaxResult register(@RequestBody CompanyUser userForm) {
+
+		return userService.insertUser(userForm) == 0 ? AjaxResult.error() : AjaxResult.success();
+	}
 }

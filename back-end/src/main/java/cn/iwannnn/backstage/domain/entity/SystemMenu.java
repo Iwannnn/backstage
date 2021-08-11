@@ -1,5 +1,6 @@
 package cn.iwannnn.backstage.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 
 import lombok.Data;
@@ -7,7 +8,7 @@ import lombok.Data;
 @Data
 public class SystemMenu {
 
-	@TableId(value = "id")
+	@TableId(value = "menu_id", type = IdType.AUTO)
 	private String menuId;
 
 	private String menuName;

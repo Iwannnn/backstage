@@ -50,4 +50,9 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 		return userMapper.getUserList();
 	}
 
+	@Override
+	public int insertUser(CompanyUser userForm) {
+		userForm.setPassword(Md5Utils.createMD5(userForm.getPassword()));
+		return userMapper.insert(userForm);
+	}
 }

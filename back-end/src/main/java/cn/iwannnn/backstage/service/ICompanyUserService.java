@@ -12,4 +12,6 @@ public interface ICompanyUserService {
 	public CompanyUser selectUserByUsername(String username);
 
 	public List<CompanyUser> getUserList();
+
+	public int insertUser(CompanyUser userForm);
 }

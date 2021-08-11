@@ -1,6 +1,7 @@
 package cn.iwannnn.backstage.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -10,7 +11,7 @@ import lombok.Data;
 @Data
 public class CompanyDept {
 
-	@TableId(value = "id")
+	@TableId(value = "dept_id", type = IdType.AUTO)
 	private String deptId;
 
 	private String parentId;

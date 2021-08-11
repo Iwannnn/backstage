@@ -52,6 +52,7 @@
     </div>
 </template>
 <script>
+import { register } from "@/api/register";
 export default {
     name: "Register",
     data() {
@@ -147,7 +148,7 @@ export default {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
                 if (valid) {
-                    alert("submit!");
+                    register(this.registerForm);
                 } else {
                     console.log("error submit!!");
                     return false;
