@@ -1,5 +1,5 @@
 <template>
-    <div class="login" style="">
+    <div class="login">
         <el-form
             ref="loginForm"
             :model="loginForm"
@@ -31,6 +31,7 @@
                 style="margin: 0px 0px 25px 0px"
                 >记住密码</el-checkbox
             >
+
             <el-form-item style="width: 100%">
                 <el-button
                     :loading="loading"
@@ -43,6 +44,9 @@
                     <span v-else>登 录 中...</span>
                 </el-button>
             </el-form-item>
+            <router-link :to="{ path: '/register' }">
+                <el-button style="width: 100%" type="info">注册账号</el-button>
+            </router-link>
         </el-form>
     </div>
 </template>
@@ -157,7 +161,7 @@ export default {
     width: 100%;
     position: fixed;
     background-size: 100% 100%;
-    background-image: url("../assets/images/login-background.jpg");
+    background-image: url("../assets/images/background.jpg");
 }
 .title {
     margin: 0px auto 30px auto;

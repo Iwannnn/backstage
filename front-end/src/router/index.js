@@ -24,6 +24,11 @@ const constantRouters = [
 		hidden: true
 	},
 	{
+		path: "/register",
+		component: resolve => require(["@/views/register"], resolve),
+		hidden: true
+	},
+	{
 		path: "/redirect",
 		name: "redirect",
 		component: (resolve) => require(["@/views/redirect"], resolve)

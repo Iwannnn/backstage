@@ -5,7 +5,7 @@
 <script>
 import { getDeptList } from "@/api/company/dept";
 export default {
-    name: "dept",
+    name: "Dept",
     data() {
         return {
             pageRequest: {

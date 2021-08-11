@@ -5,7 +5,7 @@
 <script>
 import { getTaskList } from "@/api/company/task";
 export default {
-    name: "task",
+    name: "Task",
     data() {
         return {
             pageRequest: {

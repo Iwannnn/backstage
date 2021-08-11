@@ -5,7 +5,7 @@
 <script>
 import { getUserList } from "@/api/company/user";
 export default {
-    name: "user",
+    name: "User",
     data() {
         return {
             pageRequest: {
