@@ -89,22 +89,32 @@ export default {
         var checkUsername = (rule, value, callback) => {
             checkExist("username", value).then((res) => {
                 console.log(res);
-                callback;
+                if (res.msg === "exist") {
+                    callback(new Error("该账号名已被使用"));
+                } else {
+                    callback();
+                }
             });
         };
         var checkEmail = (rule, value, callback) => {
-            if (checkExist(value)) {
-                callback(new Error("账号重复"));
-            } else {
-                callback();
-            }
+            checkExist("email", value).then((res) => {
+                console.log(res);
+                if (res.msg === "exist") {
+                    callback(new Error("该邮箱已被使用"));
+                } else {
+                    callback();
+                }
+            });
         };
         var checkPhonenumber = (rule, value, callback) => {
-            if (checkExist(value)) {
-                callback(new Error("账号重复"));
-            } else {
-                callback();
-            }
+            checkExist("phonenumber", value).then((res) => {
+                console.log(res);
+                if (res.msg === "exist") {
+                    callback(new Error("该电话已被使用"));
+                } else {
+                    callback();
+                }
+            });
         };
         return {
             registerForm: {
@@ -153,6 +163,10 @@ export default {
                         message: "请输入正确的邮箱地址",
                         trigger: ["blur", "change"],
                     },
+                    {
+                        validator: checkEmail,
+                        trigger: "blur",
+                    },
                 ],
                 phonenumber: [
                     {
@@ -162,6 +176,10 @@ export default {
                     },
                     {
                         validator: validatePhonenumber,
+                        trigger: "blur",
+                    },
+                    {
+                        validator: checkPhonenumber,
                         trigger: "blur",
                     },
                 ],
