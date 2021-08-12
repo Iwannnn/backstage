@@ -1,5 +1,6 @@
 package cn.iwannnn.backstage.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import cn.iwannnn.backstage.domain.entity.CompanyUser;
 import cn.iwannnn.backstage.domain.models.AjaxResult;
@@ -58,5 +60,10 @@ public class CompanyUserController {
 	@RequestMapping("/checkExist")
 	public AjaxResult checkExist(@RequestBody RegisterDto data) {
 		return userService.checkExist(data) == true ? AjaxResult.success() : AjaxResult.success("exist");
+	}
+
+	@RequestMapping("/importData")
+	public AjaxResult importData(MultipartFile file) throws IOException {
+		return AjaxResult.success("上传成功");
 	}
 }
