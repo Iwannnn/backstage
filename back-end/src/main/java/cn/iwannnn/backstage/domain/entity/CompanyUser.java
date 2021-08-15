@@ -6,7 +6,10 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
+import cn.iwannnn.backstage.utils.Md5Utils;
+import lombok.AccessLevel;
 import lombok.Data;
+import lombok.Setter;
 
 @Data
 public class CompanyUser {
@@ -17,6 +20,7 @@ public class CompanyUser {
 
 	private String username;
 
+	@Setter(AccessLevel.NONE)
 	private String password;
 
 	private String nickname;
@@ -44,5 +48,9 @@ public class CompanyUser {
 	private String updateTime;
 
 	private String remark;
+
+	public void setPassword(String value) {
+		this.password = Md5Utils.createMD5(value);
+	}
 
 }

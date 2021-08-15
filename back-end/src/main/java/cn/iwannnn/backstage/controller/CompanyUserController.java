@@ -1,6 +1,7 @@
 package cn.iwannnn.backstage.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import com.github.pagehelper.PageHelper;
@@ -19,6 +20,7 @@ import cn.iwannnn.backstage.domain.models.PageRequest;
 import cn.iwannnn.backstage.dto.RegisterDto;
 import cn.iwannnn.backstage.dto.UserDto;
 import cn.iwannnn.backstage.service.ICompanyUserService;
+import cn.iwannnn.backstage.utils.ExcelUtils;
 import cn.iwannnn.backstage.utils.uuid.IdUtils;
 import lombok.extern.log4j.Log4j2;
 
@@ -63,7 +65,11 @@ public class CompanyUserController {
 	}
 
 	@RequestMapping("/importData")
-	public AjaxResult importData(MultipartFile file) throws IOException {
+	public AjaxResult importData(MultipartFile file) throws IOException, InstantiationException, IllegalAccessException,
+			NoSuchMethodException, SecurityException, IllegalArgumentException, InvocationTargetException {
+		log.info(file.toString());
+		List<CompanyUser> list = ExcelUtils.importData(file, CompanyUser.class);
+		System.out.println(list.toString());
 		return AjaxResult.success("上传成功");
 	}
 }

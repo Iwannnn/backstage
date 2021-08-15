@@ -1,5 +1,14 @@
 <template>
-    <div>company/user</div>
+    <div>
+        <el-upload
+            :show-file-list="false"
+            accept=".xlsx"
+            action="http://localhost:8080/company/user/importData"
+            style="display: inline"
+        >
+            <el-button size="mini" type="success"> 导入文件 </el-button>
+        </el-upload>
+    </div>
 </template>
 
 <script>
@@ -12,6 +21,7 @@ export default {
                 pageNum: 1,
                 pageSize: 10,
             },
+            baseUrl: process.env.VUE_APP_BASE_API,
         };
     },
     created() {

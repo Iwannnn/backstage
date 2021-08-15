@@ -14,7 +14,9 @@ import cn.iwannnn.backstage.mapper.CompanyUserMapper;
 import cn.iwannnn.backstage.service.ICompanyUserService;
 import cn.iwannnn.backstage.service.TokenService;
 import cn.iwannnn.backstage.utils.Md5Utils;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @Service
 public class CompanyUserServiceImpl implements ICompanyUserService {
 
@@ -27,11 +29,12 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	@Override
 	public AjaxResult login(UserDto loginForm) {
 		CompanyUser user = null;
-		LoginUser loginUser;
+		LoginUser loginUser = null;
 		String token;
-		loginForm.setPassword(Md5Utils.createMD5(loginForm.getPassword()));
+		loginForm.setPassword(Md5Utils.createMD5(Md5Utils.createMD5(loginForm.getPassword())));
 		user = userMapper.selectByUsername(loginForm.getUsername());
-		// log.info(user);
+		log.info(user);
+		log.info(loginForm);
 		if (user == null)
 			return AjaxResult.error("帐号不存在");
 		else if (!loginForm.getPassword().equals(user.getPassword()))
@@ -53,7 +56,7 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 
 	@Override
 	public int insertUser(CompanyUser userForm) {
-		userForm.setPassword(Md5Utils.createMD5(userForm.getPassword()));
+		log.info(userForm.toString());
 		return userMapper.insert(userForm);
 	}
 
