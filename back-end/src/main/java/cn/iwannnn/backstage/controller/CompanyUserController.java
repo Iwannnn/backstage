@@ -70,6 +70,7 @@ public class CompanyUserController {
 		log.info(file.toString());
 		List<CompanyUser> list = ExcelUtils.importData(file, CompanyUser.class);
 		System.out.println(list.toString());
+		userService.insertUser(list);
 		return AjaxResult.success("上传成功");
 	}
 }

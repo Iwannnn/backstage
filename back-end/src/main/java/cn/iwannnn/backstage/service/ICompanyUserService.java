@@ -16,5 +16,8 @@ public interface ICompanyUserService {
 
 	public int insertUser(CompanyUser userForm);
 
+	public void insertUser(List<CompanyUser> userList);
+
 	public boolean checkExist(RegisterDto data);
+
 }

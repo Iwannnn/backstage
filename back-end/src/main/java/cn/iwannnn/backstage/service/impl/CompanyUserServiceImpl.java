@@ -64,4 +64,11 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	public boolean checkExist(RegisterDto data) {
 		return userMapper.checkExist(data).toString() == "[]";
 	}
+
+	@Override
+	public void insertUser(List<CompanyUser> userList) {
+		for (int i = 0; i < userList.size(); i++) {
+			userMapper.insert(userList.get(i));
+		}
+	}
 }
