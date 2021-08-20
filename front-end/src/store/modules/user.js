@@ -23,14 +23,11 @@ const user = {
 	},
 	actions: {
 		Login({ commit }, loginInfo) {
-			console.log("store user");
-			console.log(loginInfo);
 			const username = loginInfo.username.trim();
 			const password = loginInfo.password;
 			return new Promise((resolve, reject) => {
 				login(username, password)
 					.then(res => {
-						console.log(res);
 						setToken(res.data);
 						commit("SET_TOKEN", res.data);
 						resolve();

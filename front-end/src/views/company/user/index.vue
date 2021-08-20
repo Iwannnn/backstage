@@ -193,6 +193,9 @@ export default {
         handleDelete(row) {
             delUser(row.userId).then((res) => {
                 console.log(res);
+                if (res.code === 200) {
+                    this.getList();
+                }
             });
         },
         handleExport() {},
