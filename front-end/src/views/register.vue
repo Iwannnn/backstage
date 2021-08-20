@@ -1,6 +1,6 @@
 <template>
     <div class="register">
-        <registerform />
+        <registerform :redirectPath="'/login'" />
     </div>
 </template>
 <script>

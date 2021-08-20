@@ -50,20 +50,19 @@
                         icon="el-icon-search"
                         size="mini"
                         @click="handleQuery"
-                        >搜索</el-button
-                    >
+                        >搜索
+                    </el-button>
                 </el-col>
                 <el-col :span="1.5">
                     <el-button
                         icon="el-icon-refresh"
                         size="mini"
                         @click="resetQuery"
-                        >重置</el-button
-                    >
+                        >重置
+                    </el-button>
                 </el-col>
             </el-row>
         </el-form>
-
         <el-row :gutter="10" class="mb8">
             <el-col :span="1.5">
                 <el-button
@@ -73,26 +72,6 @@
                     size="mini"
                     @click="handleAdd"
                     >新增</el-button
-                >
-            </el-col>
-            <el-col :span="1.5">
-                <el-button
-                    type="success"
-                    plain
-                    icon="el-icon-edit"
-                    size="mini"
-                    @click="handleUpdate"
-                    >修改</el-button
-                >
-            </el-col>
-            <el-col :span="1.5">
-                <el-button
-                    type="danger"
-                    plain
-                    icon="el-icon-delete"
-                    size="mini"
-                    @click="handleDelete"
-                    >删除</el-button
                 >
             </el-col>
             <el-col :span="1.5">
@@ -123,7 +102,7 @@
             </el-col>
         </el-row>
         <el-dialog :visible.sync="open">
-            <registerform />
+            <registerform :redirectPath="'/company/user'" />
         </el-dialog>
         <el-table
             :data="pageInfo.list"
@@ -217,7 +196,12 @@ export default {
         handleExport() {},
         handleQuery() {},
         resetQuery() {
-            this;
+            this.queryParams = {
+                username: "",
+                nickname: "",
+                email: "",
+                phonenumber: "",
+            };
         },
         handleSelectionChange() {},
     },

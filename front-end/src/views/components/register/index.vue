@@ -86,7 +86,6 @@ export default {
         };
         var checkUsername = (rule, value, callback) => {
             checkExist("username", value).then((res) => {
-                console.log(res);
                 if (res.msg === "exist") {
                     callback(new Error("该账号名已被使用"));
                 } else {
@@ -96,7 +95,6 @@ export default {
         };
         var checkEmail = (rule, value, callback) => {
             checkExist("email", value).then((res) => {
-                console.log(res);
                 if (res.msg === "exist") {
                     callback(new Error("该邮箱已被使用"));
                 } else {
@@ -106,7 +104,6 @@ export default {
         };
         var checkPhonenumber = (rule, value, callback) => {
             checkExist("phonenumber", value).then((res) => {
-                console.log(res);
                 if (res.msg === "exist") {
                     callback(new Error("该电话已被使用"));
                 } else {
@@ -150,6 +147,12 @@ export default {
                         trigger: "change",
                     },
                 ],
+                sex: [
+                    {
+                        required: true,
+                        trigger: "blur",
+                    },
+                ],
                 email: [
                     {
                         required: true,
@@ -184,13 +187,18 @@ export default {
             },
         };
     },
+    props: {
+        redirectPath: "",
+    },
     methods: {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
+                console.log(this.redirectPath);
                 if (valid) {
-                    register(this.registerForm);
+                    register(this.registerForm).then((res) => {
+                        this.$router.push({ path: this.redirectPath });
+                    });
                 } else {
-                    console.log("error submit!!");
                     return false;
                 }
             });
