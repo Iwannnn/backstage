@@ -104,10 +104,7 @@
         <el-dialog :visible.sync="open">
             <registerform :redirectPath="'/company/user'" />
         </el-dialog>
-        <el-table
-            :data="pageInfo.list"
-            @selection-change="handleSelectionChange"
-        >
+        <el-table :data="pageInfo.list">
             <el-table-column type="selection" width="55" align="center" />
             <el-table-column label="用户id" align="center" prop="userId" />
             <el-table-column label="部门id" align="center" prop="deptId" />
@@ -141,17 +138,18 @@
         </el-table>
 
         <el-pagination
-            v-show="total > 0"
+            v-show="total"
             :total="total"
-            :page.sync="queryParams.pageNum"
-            :limit.sync="queryParams.pageSize"
-            @pagination="getList"
+            :current-page.sync="pageRequest.pageNum"
+            :page-size.sync="pageRequest.pageSize"
+            @prev-click="prevClick"
+            @next-click="nextClick"
         />
     </div>
 </template>
 
 <script>
-import { getUserList, addUser, delUser, updateUser } from "@/api/company/user";
+import { getUserList, delUser, updateUser } from "@/api/company/user";
 import registerform from "@/views/components/register";
 export default {
     name: "User",
@@ -183,7 +181,6 @@ export default {
     methods: {
         getList() {
             getUserList(this.pageRequest).then((res) => {
-                console.log(res.data);
                 this.pageInfo = res.data;
                 this.total = res.data.total;
             });
@@ -192,7 +189,11 @@ export default {
             this.open = true;
         },
         handleUpdate() {},
-        handleDelete() {},
+        handleDelete(row) {
+            delUser(this.pageInfo.list[row].userId).then((res) => {
+                console.log(res);
+            });
+        },
         handleExport() {},
         handleQuery() {},
         resetQuery() {
@@ -203,7 +204,14 @@ export default {
                 phonenumber: "",
             };
         },
-        handleSelectionChange() {},
+        nextClick() {
+            this.pageRequest.pageNum++;
+            this.getList();
+        },
+        prevClick() {
+            this.pageRequest.pageNum--;
+            this.getList();
+        },
     },
 };
 </script>

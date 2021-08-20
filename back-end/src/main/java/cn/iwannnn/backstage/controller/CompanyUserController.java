@@ -54,8 +54,8 @@ public class CompanyUserController {
 		return AjaxResult.success(pageInfo);
 	}
 
-	@RequestMapping("/register")
-	public AjaxResult register(@RequestBody CompanyUser userForm) {
+	@RequestMapping("/addUser")
+	public AjaxResult addUser(@RequestBody CompanyUser userForm) {
 		return userService.insertUser(userForm) == 0 ? AjaxResult.error() : AjaxResult.success();
 	}
 

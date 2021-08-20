@@ -196,9 +196,18 @@ export default {
                 console.log(this.redirectPath);
                 if (valid) {
                     register(this.registerForm).then((res) => {
+                        this.$message({
+                            message: "注册成功",
+                            type: "success",
+                        });
+                        this.$message;
                         this.$router.push({ path: this.redirectPath });
                     });
                 } else {
+                    this.$message({
+                        message: "注册失败",
+                        type: "error",
+                    });
                     return false;
                 }
             });
