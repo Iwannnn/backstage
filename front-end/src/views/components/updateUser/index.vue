@@ -1,88 +1,54 @@
+
 <template>
     <el-form
-        :model="registerForm"
+        :model="updateForm"
         status-icon
         :rules="registerRules"
-        ref="registerForm"
+        ref="updateForm"
         label-width="100px"
         class="register-form"
     >
         <h3 class="tittle">{{ tittle }}</h3>
-        <el-form-item label="账号" prop="username">
-            <el-input v-model="registerForm.username" />
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-            <el-input
-                type="password"
-                v-model="registerForm.password"
-                autocomplete="off"
-            />
-        </el-form-item>
-        <el-form-item label="确认密码" prop="repassword">
-            <el-input
-                type="password"
-                v-model="registerForm.repassword"
-                autocomplete="off"
-            />
-        </el-form-item>
         <el-form-item label="昵称" prop="nickname">
-            <el-input v-model="registerForm.nickname" />
+            <el-input v-model="updateForm.nickname" />
         </el-form-item>
         <el-form-item label="部门" prop="deptId">
-            <el-select v-model="registerForm.deptId" placeholder="请选择部门">
+            <el-select v-model="updateForm.deptId" placeholder="请选择部门">
                 <el-option label="女性" value="0" />
                 <el-option label="男性" value="1" />
                 <el-option label="转性" value="2" />
             </el-select>
         </el-form-item>
         <el-form-item label="性别" prop="sex">
-            <el-select v-model="registerForm.sex" placeholder="请选择性别">
+            <el-select v-model="updateForm.sex" placeholder="请选择性别">
                 <el-option label="女性" value="0" />
                 <el-option label="男性" value="1" />
                 <el-option label="转性" value="2" />
             </el-select>
         </el-form-item>
         <el-form-item label="邮箱" prop="email">
-            <el-input v-model="registerForm.email" />
+            <el-input v-model="updateForm.email" />
         </el-form-item>
         <el-form-item label="电话" prop="phonenumber">
-            <el-input v-model="registerForm.phonenumber" />
+            <el-input v-model="updateForm.phonenumber" />
         </el-form-item>
         <el-form-item label="备注" prop="remark">
-            <el-input v-model="registerForm.remark" />
+            <el-input v-model="updateForm.remark" />
         </el-form-item>
         <el-form-item>
-            <el-button type="primary" @click="submitForm('registerForm')">
+            <el-button type="primary" @click="submitForm('updateForm')">
                 确定
             </el-button>
-            <el-button @click="resetForm('registerForm')">重置</el-button>
+            <el-button @click="resetForm('updateForm')">重置</el-button>
         </el-form-item>
     </el-form>
 </template>
 <script>
-import { register, checkExist } from "@/api/register";
+import { checkExist } from "@/api/register";
+import { updateUser } from "@/api/company/user";
 export default {
-    name: "RegisterForm",
+    name: "UpdateUser",
     data() {
-        var validatePassword = (rule, value, callback) => {
-            if (value === "") {
-                callback(new Error("请输入密码"));
-            } else {
-                if (this.registerForm.repassword !== "") {
-                    this.$refs.registerForm.validateField("repassword");
-                }
-                callback();
-            }
-        };
-        var validateRePassword = (rule, value, callback) => {
-            if (value === "") {
-                callback(new Error("请再次输入密码"));
-            } else if (value !== this.registerForm.password) {
-                callback(new Error("两次输入密码不一致!"));
-            } else {
-                callback();
-            }
-        };
         var validatePhonenumber = (rule, value, callback) => {
             if (
                 /^(13[0-9]|14[5-9]|15[012356789]|166|17[0-8]|18[0-9]|19[8-9])[0-9]{8}$/.test(
@@ -94,18 +60,9 @@ export default {
                 callback();
             }
         };
-        var checkUsername = (rule, value, callback) => {
-            checkExist("username", value).then((res) => {
-                if (res.msg === "exist") {
-                    callback(new Error("该账号名已被使用"));
-                } else {
-                    callback();
-                }
-            });
-        };
         var checkEmail = (rule, value, callback) => {
             checkExist("email", value).then((res) => {
-                if (res.msg === "exist") {
+                if (res.msg === "exist" && value != this.updateForm.email) {
                     callback(new Error("该邮箱已被使用"));
                 } else {
                     callback();
@@ -114,7 +71,10 @@ export default {
         };
         var checkPhonenumber = (rule, value, callback) => {
             checkExist("phonenumber", value).then((res) => {
-                if (res.msg === "exist") {
+                if (
+                    res.msg === "exist" &&
+                    value !== this.updateForm.phonenumber
+                ) {
                     callback(new Error("该电话已被使用"));
                 } else {
                     callback();
@@ -123,40 +83,13 @@ export default {
         };
         return {
             registerRules: {
-                username: [
-                    {
-                        required: true,
-                        message: "请输入账号",
-                        trigger: "blur",
-                    },
-                    {
-                        validator: checkUsername,
-                        trigger: "blur",
-                    },
-                ],
-                password: [
-                    {
-                        required: true,
-                        validator: validatePassword,
-                        trigger: "blur",
-                    },
-                ],
-                repassword: [
-                    {
-                        required: true,
-                        validator: validateRePassword,
-                        trigger: "change",
-                    },
-                ],
                 sex: [
                     {
-                        required: true,
                         trigger: "blur",
                     },
                 ],
                 email: [
                     {
-                        required: true,
                         message: "请输入邮箱地址",
                         trigger: "blur",
                     },
@@ -172,7 +105,6 @@ export default {
                 ],
                 phonenumber: [
                     {
-                        required: true,
                         message: "请输入手机号",
                         trigger: "blur",
                     },
@@ -191,15 +123,12 @@ export default {
     props: {
         redirectPath: String,
         tittle: String,
-        registerForm: {
+        updateForm: {
             type: Object,
             default: function () {
                 return {
                     userId: "",
                     deptId: "",
-                    username: "",
-                    password: "",
-                    repassword: "",
                     nickname: "",
                     sex: "",
                     email: "",
@@ -212,15 +141,12 @@ export default {
     methods: {
         submitForm(formName) {
             this.$refs[formName].validate((valid) => {
-                console.log(this.redirectPath);
                 if (valid) {
-                    register(this.registerForm).then((res) => {
+                    updateUser(this.updateForm).then((res) => {
                         this.$message({
                             message: "操作成功",
                             type: "success",
                         });
-                        this.$message;
-                        this.$router.push({ path: this.redirectPath });
                     });
                 } else {
                     this.$message({

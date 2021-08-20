@@ -2,7 +2,6 @@ import request from "@/utils/request";
 
 
 export function register(registerForm) {
-	console.log(data);
 	return request({
 		url: "/company/user/addUser",
 		method: "post",

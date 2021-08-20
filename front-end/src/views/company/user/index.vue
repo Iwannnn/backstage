@@ -101,8 +101,11 @@
                 </el-upload>
             </el-col>
         </el-row>
-        <el-dialog :visible.sync="open">
-            <registerform :redirectPath="'/company/user'" />
+        <el-dialog :visible.sync="registeropen" width="500px" append-to-body>
+            <registerForm :tittle="tittle" />
+        </el-dialog>
+        <el-dialog :visible.sync="updateopen" width="500px" append-to-body>
+            <updateForm :tittle="tittle" :updateForm="form" />
         </el-dialog>
         <el-table :data="pageInfo.list">
             <el-table-column type="selection" width="55" align="center" />
@@ -149,8 +152,9 @@
 </template>
 
 <script>
-import { getUserList, delUser, updateUser } from "@/api/company/user";
-import registerform from "@/views/components/register";
+import { getUserList, delUser } from "@/api/company/user";
+import registerForm from "@/views/components/register";
+import updateForm from "@/views/components/updateUser";
 export default {
     name: "User",
     data() {
@@ -168,12 +172,28 @@ export default {
                 email: "",
                 phonenumber: "",
             },
-            open: false,
+            form: {
+                userId: "",
+                deptId: "",
+                username: "",
+                password: "",
+                repassword: "",
+                nickname: "",
+                sex: "",
+                email: "",
+                phonenumber: "",
+                remark: "",
+            },
+            tittle: "",
+            registeropen: false,
+            updateopen: false,
+            dialogTittle: "",
             baseUrl: process.env.VUE_APP_BASE_API,
         };
     },
     components: {
-        registerform,
+        registerForm,
+        updateForm,
     },
     created() {
         this.getList();
@@ -187,9 +207,24 @@ export default {
             });
         },
         handleAdd() {
-            this.open = true;
+            this.resetForm();
+            this.registeropen = true;
+            this.tittle = "添加用户";
         },
-        handleUpdate() {},
+        handleUpdate(row) {
+            this.updateopen = true;
+            this.tittle = "修改用户信息";
+            this.form = {
+                userId: row.userId,
+                deptId: row.deptId,
+                nickname: row.nickname,
+                sex: row.sex,
+                email: row.email,
+                phonenumber: row.phonenumber,
+                remark: row.remark,
+            };
+            console.log(this.form);
+        },
         handleDelete(row) {
             delUser(row.userId).then((res) => {
                 console.log(res);
@@ -206,6 +241,20 @@ export default {
                 nickname: "",
                 email: "",
                 phonenumber: "",
+            };
+        },
+        resetForm() {
+            this.form = {
+                userId: "",
+                deptId: "",
+                username: "",
+                password: "",
+                repassword: "",
+                nickname: "",
+                sex: "",
+                email: "",
+                phonenumber: "",
+                remark: "",
             };
         },
         nextClick() {

@@ -1,12 +1,17 @@
 <template>
     <div class="register">
-        <registerform :redirectPath="'/login'" />
+        <registerform :redirectPath="'/login'" :tittle="tittle" />
     </div>
 </template>
 <script>
 import registerform from "@/views/components/register";
 export default {
     name: "Register",
+    data() {
+        return {
+            tittle: "注册账号",
+        };
+    },
     components: {
         registerform,
     },

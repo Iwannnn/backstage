@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import cn.iwannnn.backstage.utils.Md5Utils;
 import lombok.AccessLevel;
@@ -21,6 +22,7 @@ public class CompanyUser {
 	private String username;
 
 	@Setter(AccessLevel.NONE)
+	@JsonIgnore
 	private String password;
 
 	private String nickname;
