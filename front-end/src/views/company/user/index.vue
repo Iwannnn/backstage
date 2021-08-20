@@ -101,10 +101,20 @@
                 </el-upload>
             </el-col>
         </el-row>
-        <el-dialog :visible.sync="registeropen" width="500px" append-to-body>
+        <el-dialog
+            :visible.sync="registeropen"
+            @close="getList"
+            width="500px"
+            append-to-body
+        >
             <registerForm :tittle="tittle" />
         </el-dialog>
-        <el-dialog :visible.sync="updateopen" width="500px" append-to-body>
+        <el-dialog
+            :visible.sync="updateopen"
+            width="500px"
+            @close="getList"
+            append-to-body
+        >
             <updateForm :tittle="tittle" :updateForm="form" />
         </el-dialog>
         <el-table :data="pageInfo.list">
@@ -200,6 +210,7 @@ export default {
     },
     methods: {
         getList() {
+            console.log("get");
             getUserList(this.pageRequest).then((res) => {
                 console.log(res.data.list);
                 this.pageInfo = res.data;
@@ -223,7 +234,6 @@ export default {
                 phonenumber: row.phonenumber,
                 remark: row.remark,
             };
-            console.log(this.form);
         },
         handleDelete(row) {
             delUser(row.userId).then((res) => {
