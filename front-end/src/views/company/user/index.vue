@@ -22,6 +22,31 @@
                         />
                     </el-form-item>
                 </el-col>
+
+                <el-col :span="1.5">
+                    <el-form-item label="部门" prop="deptId">
+                        <el-select
+                            v-model="queryParams.deptId"
+                            placeholder="请选择部门"
+                        >
+                            <el-option label="女性" value="0" />
+                            <el-option label="男性" value="1" />
+                            <el-option label="转性" value="2" />
+                        </el-select>
+                    </el-form-item>
+                </el-col>
+                <el-col :span="1.5">
+                    <el-form-item label="性别" prop="sex">
+                        <el-select
+                            v-model="queryParams.sex"
+                            placeholder="请选择性别"
+                        >
+                            <el-option label="女性" value="0" />
+                            <el-option label="男性" value="1" />
+                            <el-option label="转性" value="2" />
+                        </el-select>
+                    </el-form-item>
+                </el-col>
                 <el-col :span="1.5">
                     <el-form-item label="邮箱">
                         <el-input
@@ -153,10 +178,11 @@
         <el-pagination
             v-show="total"
             :total="total"
-            :current-page.sync="pageRequest.pageNum"
-            :page-size.sync="pageRequest.pageSize"
-            @prev-click="prevClick"
-            @next-click="nextClick"
+            :current-page.sync="queryParams.pageNum"
+            :page-size.sync="queryParams.pageSize"
+            @prev-click="handlePrevClick"
+            @next-click="handleNextClick"
+            @current-change="handleCurrentChange"
         />
     </div>
 </template>
@@ -169,16 +195,16 @@ export default {
     name: "User",
     data() {
         return {
-            pageRequest: {
-                pageNum: 1,
-                pageSize: 10,
-            },
             userList: [],
             pageInfo: {},
             total: 1,
             queryParams: {
+                pageNum: 1,
+                pageSize: 10,
                 username: "",
                 nickname: "",
+                deptId: "",
+                sex: "",
                 email: "",
                 phonenumber: "",
             },
@@ -211,7 +237,7 @@ export default {
     methods: {
         getList() {
             console.log("get");
-            getUserList(this.pageRequest).then((res) => {
+            getUserList(this.queryParams).then((res) => {
                 console.log(res.data.list);
                 this.pageInfo = res.data;
                 this.total = res.data.total;
@@ -244,7 +270,11 @@ export default {
             });
         },
         handleExport() {},
-        handleQuery() {},
+        handleQuery() {
+            console.log(this.queryParams);
+            this.queryParams.pageNum = 1;
+            this.getList();
+        },
         resetQuery() {
             this.queryParams = {
                 username: "",
@@ -267,12 +297,16 @@ export default {
                 remark: "",
             };
         },
-        nextClick() {
-            this.pageRequest.pageNum++;
+        handleNextClick() {
+            this.queryParams.pageNum++;
             this.getList();
         },
-        prevClick() {
-            this.pageRequest.pageNum--;
+        handlePrevClick() {
+            this.queryParams.pageNum--;
+            this.getList();
+        },
+        handleCurrentChange(val) {
+            this.queryParams.pageNum = val;
             this.getList();
         },
     },

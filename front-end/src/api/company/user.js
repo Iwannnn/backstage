@@ -1,10 +1,10 @@
 import request from "@/utils/request"
 
-export function getUserList(pageRequest) {
+export function getUserList(queryParams) {
 	return request({
 		url: "/company/user/getUserList",
 		method: "post",
-		data: pageRequest
+		data: queryParams
 	})
 }
 
