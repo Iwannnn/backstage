@@ -22,4 +22,5 @@ public interface ICompanyUserService {
 
 	public boolean checkExist(RegisterDto data);
 
+	public int updateUser(CompanyUser updateForm);
 }

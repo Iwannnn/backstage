@@ -65,6 +65,13 @@ public class CompanyUserController {
 		return userService.delUser(userId) == 0 ? AjaxResult.error() : AjaxResult.success();
 	}
 
+	@RequestMapping("updateUser")
+	public AjaxResult updateUser(@RequestBody CompanyUser updateForm) {
+		log.info(updateForm);
+		return userService.updateUser(updateForm) == 0 ? AjaxResult.error() : AjaxResult.success();
+
+	}
+
 	@RequestMapping("/checkExist")
 	public AjaxResult checkExist(@RequestBody RegisterDto data) {
 		return userService.checkExist(data) == true ? AjaxResult.success() : AjaxResult.success("exist");

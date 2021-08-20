@@ -76,4 +76,9 @@ public class CompanyUserServiceImpl implements ICompanyUserService {
 	public int delUser(Integer userId) {
 		return userMapper.deleteById(userId);
 	}
+
+	@Override
+	public int updateUser(CompanyUser updateForm) {
+		return userMapper.updateById(updateForm);
+	}
 }
