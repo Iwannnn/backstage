@@ -43,6 +43,7 @@ service.interceptors.request.use(
 			config.params = {};
 			config.url = url;
 		}
+		console.log(config)
 		return config;
 	},
 	error => {

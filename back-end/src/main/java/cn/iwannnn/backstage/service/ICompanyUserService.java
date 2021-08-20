@@ -18,6 +18,8 @@ public interface ICompanyUserService {
 
 	public void insertUser(List<CompanyUser> userList);
 
+	public int delUser(Integer userId);
+
 	public boolean checkExist(RegisterDto data);
 
 }

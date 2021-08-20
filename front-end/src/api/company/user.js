@@ -8,25 +8,18 @@ export function getUserList(pageRequest) {
 	})
 }
 
-export function addUser(userInfo) {
-	return request({
-		url: "/compant/user/addUser",
-		method: "post",
-		data: userInfo
-	})
-}
 
 export function delUser(userId) {
 	return request({
-		url: "/compant/user/delUser",
+		url: "/company/user/delUser",
 		method: "get",
-		data: userId
+		params: { userId: userId }
 	})
 }
 
 export function updateUser(userInfo) {
 	return request({
-		url: "/compant/user/updateUser",
+		url: "/company/user/updateUser",
 		method: "post",
 		data: userInfo
 	})

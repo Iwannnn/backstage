@@ -181,6 +181,7 @@ export default {
     methods: {
         getList() {
             getUserList(this.pageRequest).then((res) => {
+                console.log(res.data.list);
                 this.pageInfo = res.data;
                 this.total = res.data.total;
             });
@@ -190,7 +191,7 @@ export default {
         },
         handleUpdate() {},
         handleDelete(row) {
-            delUser(this.pageInfo.list[row].userId).then((res) => {
+            delUser(row.userId).then((res) => {
                 console.log(res);
             });
         },
