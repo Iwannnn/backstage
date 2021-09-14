@@ -16,9 +16,7 @@ public class CompanyTask {
 
 	private String taskName;
 
-	private String leaderId;
-
-	private String userName;
+	private String userId;
 
 	private String createBy;
 
